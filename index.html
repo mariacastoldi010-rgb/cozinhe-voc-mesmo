@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozinhe Você Mesmo - Receitas Provençais</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cormorant Garamond & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        butter: {
+                            light: '#FFFDF0',
+                            DEFAULT: '#F3E9B7',
+                            dark: '#E8D795',
+                        },
+                        provencal: {
+                            bg: '#F9F5EC',          /* Tom acolhedor pastel creme */
+                            cardbg: '#FFFDF9',      /* Tom para os cartões */
+                            blue: '#B9D5E5',
+                            bluelight: '#E3EDF3',
+                            bluedark: '#638BA6',
+                            pink: '#F4B8CE',
+                            pinklight: '#FCEBF2',
+                            pinkdark: '#CE789B',
+                            wood: '#7A5C46',
+                            sand: '#EFE7D8'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F9F5EC;
+            background-image: radial-gradient(#E5DBD0 1.2px, transparent 1.2px);
+            background-size: 28px 28px;
+            font-family: 'Montserrat', sans-serif;
+            color: #4A423B;
+        }
+
+        .cozy-card {
+            background-color: #FFFDF9;
+            border: 1px solid #EAE0D0;
+            box-shadow: 0 10px 20px -5px rgba(122, 92, 70, 0.05), 0 4px 6px -2px rgba(244, 184, 206, 0.1);
+        }
+
+        .pink-heart-pulse:hover {
+            transform: scale(1.08);
+            filter: drop-shadow(0 4px 8px rgba(244, 184, 206, 0.5));
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F9F5EC;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #B9D5E5;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #F4B8CE;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <div class="bg-butter py-1.5 text-center text-xs text-provencal-wood font-medium tracking-wide border-b border-butter-dark/40 flex justify-center items-center gap-2">
+        <span>🌸 Bem-vindo ao seu ambiente aconchegante de culinária artesanal provençal!</span>
+    </div>
+
+    <header class="bg-[#F6F0E4]/90 backdrop-blur-md sticky top-0 z-40 border-b border-provencal-sand shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex items-center justify-between gap-4">
+                
+                <!-- Logo: Delicado Coração Rosa -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-full bg-provencal-pinklight border-2 border-provencal-pink flex items-center justify-center p-2.5 transition-all duration-300 pink-heart-pulse shadow-xs">
+                        <svg viewBox="0 0 24 24" class="w-full h-full text-provencal-pinkdark fill-current">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-provencal-wood leading-none">
+                            Cozinhe <span class="text-provencal-pinkdark italic font-normal">Você Mesmo</span>
+                        </h1>
+                        <p class="text-[10px] text-provencal-wood/70 uppercase tracking-widest font-sans mt-0.5">Receitas & Afeto Provençal</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-provencal-wood/80">
+                    <a href="#inicio" class="hover:text-provencal-pinkdark transition-colors">Início</a>
+                    <a href="#receitas" class="hover:text-provencal-pinkdark transition-colors">Receitas</a>
+                    <a href="#dicas" class="hover:text-provencal-pinkdark transition-colors">Dicas</a>
+                    <a href="#sobre" class="hover:text-provencal-pinkdark transition-colors">Sobre</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="flex items-center gap-3">
+                    <button onclick="openAddModal()" class="flex items-center gap-2 bg-butter hover:bg-butter-dark/80 text-provencal-wood font-medium px-4 py-2 rounded-full border border-butter-dark shadow-xs transition-all transform hover:-translate-y-0.5 text-xs sm:text-sm cursor-pointer">
+                        <i class="fa-solid fa-heart text-provencal-pinkdark text-xs"></i>
+                        <span class="hidden sm:inline">Adicionar</span> Receita
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="inicio" class="flex-grow">
+        <section class="relative py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+            <div class="bg-gradient-to-r from-provencal-bluelight/70 via-provencal-pinklight/70 to-butter/60 rounded-3xl p-8 sm:p-12 border border-provencal-sand shadow-xs relative overflow-hidden">
+                <div class="absolute -top-10 -left-10 w-32 h-32 bg-provencal-pink/20 rounded-full blur-2xl"></div>
+                <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-butter/40 rounded-full blur-2xl"></div>
+                
+                <span class="inline-block bg-[#FFFDF9]/90 text-provencal-wood text-xs px-3.5 py-1 rounded-full border border-provencal-pink/40 mb-3 font-medium">
+                    💖 Gastronomia com amor, toque pastel e simplicidade
+                </span>
+                
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-provencal-wood mb-4 max-w-2xl mx-auto leading-tight">
+                    Descubra o prazer de cozinhar pratos incríveis no seu ritmo
+                </h2>
+                <p class="text-provencal-wood/80 text-sm sm:text-base max-w-xl mx-auto mb-8 font-light">
+                    Sinta o aroma das ervas provençais, prepare sobremesas delicadas e surpreenda quem você ama com receitas simples e cheias de sabor.
+                </p>
+
+                <!-- Search Bar -->
+                <div class="max-w-xl mx-auto relative">
+                    <div class="flex items-center bg-[#FFFDF9] rounded-full shadow-sm border-2 border-provencal-blue/50 p-1.5 focus-within:border-provencal-bluedark transition-all">
+                        <i class="fa-solid fa-magnifying-glass text-provencal-bluedark ml-4 mr-2"></i>
+                        <input type="text" id="searchInput" oninput="filterRecipes()" placeholder="Buscar por nome, ingrediente ou categoria..." class="w-full bg-transparent focus:outline-none text-sm text-gray-700 placeholder-gray-400">
+                        <button onclick="filterRecipes()" class="bg-provencal-blue hover:bg-provencal-bluedark text-white font-medium px-5 py-2 rounded-full text-xs transition-colors shadow-xs cursor-pointer">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="receitas" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-provencal-sand pb-5">
+                <div>
+                    <h3 class="font-serif text-2xl font-bold text-provencal-wood">Nosso Caderno de Receitas</h3>
+                    <p class="text-xs text-provencal-wood/70 mt-1">Selecione uma categoria para explorar os sabores</p>
+                </div>
+                
+                <!-- Category Buttons -->
+                <div class="flex flex-wrap gap-2" id="categoryButtons">
+                    <button onclick="setCategory('todos')" id="btn-todos" class="category-btn active px-4 py-2 rounded-full text-xs font-medium bg-provencal-wood text-white transition-all shadow-xs cursor-pointer">
+                        Todas
+                    </button>
+                    <button onclick="setCategory('entrada')" id="btn-entrada" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-[#FFFDF9] text-provencal-wood hover:bg-butter border border-provencal-sand transition-all cursor-pointer">
+                        🥗 Entradas
+                    </button>
+                    <button onclick="setCategory('prato-principal')" id="btn-prato-principal" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-[#FFFDF9] text-provencal-wood hover:bg-butter border border-provencal-sand transition-all cursor-pointer">
+                        🍲 Pratos Principais
+                    </button>
+                    <button onclick="setCategory('sobremesa')" id="btn-sobremesa" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-[#FFFDF9] text-provencal-wood hover:bg-butter border border-provencal-sand transition-all cursor-pointer">
+                        🍰 Sobremesas
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recipe Grid -->
+            <div id="recipeGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+                <!-- Dynamic Content Loaded via JavaScript -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-16">
+                <div class="w-16 h-16 bg-provencal-pinklight rounded-full flex items-center justify-center mx-auto mb-3 text-provencal-pinkdark text-2xl">
+                    <i class="fa-solid fa-heart-crack"></i>
+                </div>
+                <h4 class="font-serif text-xl font-semibold text-provencal-wood">Nenhuma receita encontrada</h4>
+                <p class="text-xs text-provencal-wood/70 mt-1">Tente pesquisar por outros termos ou adicione sua própria receita!</p>
+            </div>
+        </section>
+
+        <section id="dicas" class="bg-provencal-bluelight/40 py-12 mt-12 border-y border-provencal-sand">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-xl mx-auto mb-8">
+                    <span class="text-provencal-bluedark text-xs uppercase tracking-wider font-semibold">Segredos da Cozinha</span>
+                    <h3 class="font-serif text-3xl font-bold text-provencal-wood mt-1">Dicas Úteis de Culinária</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="cozy-card p-6 rounded-2xl border border-provencal-sand flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-butter flex items-center justify-center text-provencal-wood mb-4 font-bold">1</div>
+                            <h4 class="font-serif text-lg font-bold text-provencal-wood mb-2">Mise en Place Perfeito</h4>
+                            <p class="text-xs text-provencal-wood/80 leading-relaxed">Antes de acender o fogo, corte, meça e organize todos os ingredientes. Isso evita erros e deixa o ato de cozinhar calmo e prazeroso.</p>
+                        </div>
+                        <span class="text-[10px] text-provencal-bluedark font-medium mt-4 block">#Organização</span>
+                    </div>
+
+                    <div class="cozy-card p-6 rounded-2xl border border-provencal-sand flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-provencal-pinklight flex items-center justify-center text-provencal-pinkdark mb-4 font-bold">2</div>
+                            <h4 class="font-serif text-lg font-bold text-provencal-wood mb-2">Ervas de Provence Frescas</h4>
+                            <p class="text-xs text-provencal-wood/80 leading-relaxed">Alecrim, tomilho, orégano e alfazema dão o toque provençal único. Adicione ervas duras no início do cozimento e moles no final.</p>
+                        </div>
+                        <span class="text-[10px] text-provencal-pinkdark font-medium mt-4 block">#Temperos</span>
+                    </div>
+
+                    <div class="cozy-card p-6 rounded-2xl border border-provencal-sand flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-provencal-bluelight flex items-center justify-center text-provencal-bluedark mb-4 font-bold">3</div>
+                            <h4 class="font-serif text-lg font-bold text-provencal-wood mb-2">O Segredo dos Molhos</h4>
+                            <p class="text-xs text-provencal-wood/80 leading-relaxed">Sempre cozinhe molhos em fogo baixo. O segredo de uma boa massa ou carne é o tempo para apurar os sabores de forma suave.</p>
+                        </div>
+                        <span class="text-[10px] text-provencal-bluedark font-medium mt-4 block">#Técnica</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="cozy-card rounded-3xl p-8 border border-provencal-sand flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80" alt="Cozinha Estilo Provençal" class="rounded-2xl object-cover h-64 w-full shadow-xs">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <span class="text-provencal-pinkdark text-xs uppercase tracking-wider font-semibold">Feito com Amor</span>
+                    <h3 class="font-serif text-3xl font-bold text-provencal-wood mt-1 mb-3">Sobre o "Cozinhe Você Mesmo"</h3>
+                    <p class="text-xs sm:text-sm text-provencal-wood/80 leading-relaxed mb-4">
+                        Inspirado na delicadeza e no acolhimento da região da Provença no sul da França, nosso site nasceu do desejo de transformar o preparo de refeições diárias em momentos mágicos de relaxamento e afeto.
+                    </p>
+                    <p class="text-xs sm:text-sm text-provencal-wood/80 leading-relaxed">
+                        Acreditamos que qualquer pessoa pode cozinhar pratos incríveis. Junte-se a nós, experimente nossas receitas e compartilhe também as suas criações favoritas!
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="recipeModal" class="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-[#FFFDF9] rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-provencal-sand relative">
+            <button onclick="closeModal('recipeModal')" class="absolute top-4 right-4 bg-white/90 hover:bg-white text-gray-600 w-9 h-9 rounded-full flex items-center justify-center shadow-md transition-all z-10 cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <div id="addModal" class="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-[#FFFDF9] rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-butter-dark p-6 sm:p-8 relative">
+            <button onclick="closeModal('addModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 w-8 h-8 rounded-full flex items-center justify-center cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-provencal-pinklight rounded-full flex items-center justify-center mx-auto mb-2 text-provencal-pinkdark text-xl">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h3 class="font-serif text-2xl font-bold text-provencal-wood">Compartilhe sua Receita</h3>
+                <p class="text-xs text-provencal-wood/70">Preencha os campos abaixo para adicionar sua criação ao site</p>
+            </div>
+
+            <form id="addRecipeForm" onsubmit="handleAddRecipe(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-provencal-wood mb-1">Nome da Receita *</label>
+                    <input type="text" id="recipeTitle" required placeholder="Ex: Torta de Maçã Especial" class="w-full px-3 py-2 text-xs bg-white border border-provencal-sand rounded-xl focus:ring-2 focus:ring-provencal-pink focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-medium text-provencal-wood mb-1">Categoria *</label>
+                        <select id="recipeCategory" required class="w-full px-3 py-2 text-xs bg-white border border-provencal-sand rounded-xl focus:ring-2 focus:ring-provencal-pink focus:outline-none">
+                            <option value="entrada">Entrada</option>
+                            <option value="prato-principal">Prato Principal</option>
+                            <option value="sobremesa">Sobremesa</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-provencal-wood mb-1">Dificuldade *</label>
+                        <select id="recipeDifficulty" required class="w-full px-3 py-2 text-xs bg-white border border-provencal-sand rounded-xl focus:ring-2 focus:ring-provencal-pink focus:outline-none">
+                            <option value="Fácil">Fácil</option>
+                            <option value="Média">Média</option>
+                            <option value="Avançada">Avançada</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-medium text-provencal-wood mb-1">Tempo de Preparo *</label>
+                        <input type="text" id="recipeTime" required placeholder="Ex: 35 min" class="w-full px-3 py-2 text-xs bg-white border border-provencal-sand rounded-xl focus:ring-2 focus:ring-provencal-pink focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-provencal-wood mb-1">Rendimento *</label>
+                        <input type="text" id="recipeServings" required placeholder="Ex: 4 porções" class="w-full px-3 py-2 text-xs bg-white border border-provencal-sand rounded-xl focus:ring-2 focus:ring-provencal-pink focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-provencal-wood mb-1">URL da Imagem (opcional)</label>
+                    <input type="url" id="recipeImage" placeholder="https://exemplo.com/imagem.jpg" class="w-full px-3 py-2 text-xs bg-white border border-provencal-sand rounded-xl focus:ring-2 focus:ring-provencal-pink focus:outline-none">
+                    <p class="text-[10px] text-gray-400 mt-0.5">Se deixar em branco, usaremos uma imagem padrão super delicada.</p>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-provencal-wood mb-1">Ingredientes (um por linha) *</label>
+                    <textarea id="recipeIngredients" required rows="3" placeholder="1 xícara de farinha&#10;2 ovos&#10;1 pitada de sal" class="w-full px-3 py-2 text-xs bg-white border border-provencal-sand rounded-xl focus:ring-2 focus:ring-provencal-pink focus:outline-none"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-provencal-wood mb-1">Modo de Preparo (passo a passo por linha) *</label>
+                    <textarea id="recipeSteps" required rows="3" placeholder="Misture todos os ingredientes secos.&#10;Adicione os líquidos e mexa bem.&#10;Leve ao forno por 30 minutos." class="w-full px-3 py-2 text-xs bg-white border border-provencal-sand rounded-xl focus:ring-2 focus:ring-provencal-pink focus:outline-none"></textarea>
+                </div>
+
+                <div id="modalToast" class="hidden text-xs p-2 rounded-lg bg-green-100 text-green-700 text-center">
+                    Receita cadastrada com amor!
+                </div>
+
+                <button type="submit" class="w-full bg-provencal-pink hover:bg-provencal-pinkdark text-provencal-wood hover:text-white font-medium py-2.5 rounded-xl transition-all text-xs shadow-xs cursor-pointer">
+                    Publicar Receita
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-[#F3ECE0] border-t border-provencal-sand mt-16 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center gap-2 mb-3">
+                <div class="w-6 h-6 rounded-full bg-provencal-pinklight flex items-center justify-center p-1">
+                    <svg viewBox="0 0 24 24" class="w-full h-full text-provencal-pinkdark fill-current">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+                <span class="font-serif font-bold text-provencal-wood text-lg">Cozinhe Você Mesmo</span>
+            </div>
+            <p class="text-xs text-provencal-wood/70 max-w-md mx-auto mb-4">
+                Desenvolvido com carinho para inspirar momentos inesquecíveis na sua cozinha. Estética Provençal & Tons Pastéis Aconchegantes.
+            </p>
+            <div class="text-[11px] text-provencal-wood/50">
+                &copy; 2026 Cozinhe Você Mesmo. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Array principal de receitas
+        let recipes = [
+            {
+                id: 1,
+                title: "Bruschetta de Tomate Confitado",
+                category: "entrada",
+                time: "20 min",
+                servings: "4 porções",
+                difficulty: "Fácil",
+                image: "https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?auto=format&fit=crop&w=800&q=80",
+                ingredients: [
+                    "4 fatias de pão rústico ou italiano",
+                    "2 xícaras de tomates cereja",
+                    "3 dentes de alho picados",
+                    "Azeite de oliva extra virgem",
+                    "Folhas de manjericão fresco",
+                    "Sal e pimenta a gosto"
+                ],
+                steps: [
+                    "Pré-aqueça o forno a 180°C.",
+                    "Em uma assadeira, misture os tomates cereja com azeite, alho, sal e pimenta.",
+                    "Asse por 25 minutos até que estejam macios e caramelizados.",
+                    "Toque as fatias de pão no forno até dourarem.",
+                    "Cubra cada fatia com os tomates confitados e finalize com folhas de manjericão fresco."
+                ]
+            },
+            {
+                id: 2,
+                title: "Salada Caprese com Pesto",
+                category: "entrada",
+                time: "15 min",
+                servings: "2 porções",
+                difficulty: "Fácil",
+                image: "https://images.unsplash.com/photo-1592417817098-8f3d6eb16113?auto=format&fit=crop&w=800&q=80",
+                ingredients: [
+                    "3 tomates maduros e firmes em fatias",
+                    "200g de muçarela de búfala em fatias",
+                    "Folhas de manjericão fresco",
+                    "3 colheres de sopa de molho pesto",
+                    "Azeite, flor de sal e balsamic glaze"
+                ],
+                steps: [
+                    "Em um prato raso, intercale as fatias de tomate e de muçarela de búfala.",
+                    "Distribua as folhas de manjericão fresco por cima.",
+                    "Espalhe colheradas do molho pesto delicadamente.",
+                    "Finalize com um fio de azeite, flor de sal e gotas de glaze balsâmico."
+                ]
+            },
+            {
+                id: 3,
+                title: "Sopa Fria de Aspargos",
+                category: "entrada",
+                time: "25 min",
+                servings: "3 porções",
+                difficulty: "Média",
+                image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80",
+                ingredients: [
+                    "1 maço de aspargos frescos",
+                    "1 batata pequena cozida",
+                    "500ml de caldo de legumes",
+                    "2 colheres de sopa de creme de leite fresco",
+                    "Sal, noz-moscada e azeite"
+                ],
+                steps: [
+                    "Cozinhe os aspargos no caldo de legumes por 10 minutos.",
+                    "Bata no liquidificador com a batata cozida até obter um creme homogêneo.",
+                    "Adicione o creme de leite, tempere com sal e noz-moscada.",
+                    "Sirva gelado com um fio de azeite."
+                ]
+            },
+            {
+                id: 4,
+                title: "Risoto de Cogumelos Paris",
+                category: "prato-principal",
+                time: "35 min",
+                servings: "3 porções",
+                difficulty: "Média",
+                image: "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=800&q=80",
+                ingredients: [
+                    "1 xícara de arroz arbóreo",
+                    "200g de cogumelos Paris fatiados",
+                    "1 cebola pequena picada",
+                    "1/2 xícara de vinho branco seco",
+                    "1L de caldo de legumes quente",
+                    "2 colheres de sopa de manteiga e parmesão ralado"
+                ],
+                steps: [
+                    "Refogue a cebola e os cogumelos na manteiga até dourarem.",
+                    "Adicione o arroz arbóreo e misture bem por 1 minuto.",
+                    "Despeje o vinho branco e deixe evaporar.",
+                    "Adicione o caldo de legumes aos poucos, mexendo sempre até o arroz ficar al dente.",
+                    "Finalize com manteiga gelada e parmesão para cremosidade."
+                ]
+            },
+            {
+                id: 5,
+                title: "Frango às Ervas de Provença",
+                category: "prato-principal",
+                time: "40 min",
+                servings: "4 porções",
+                difficulty: "Fácil",
+                image: "https://images.unsplash.com/photo-1604908176997-125f2596f3c8?auto=format&fit=crop&w=800&q=80",
+                ingredients: [
+                    "4 filés de peito de frango",
+                    "2 colheres de sopa de ervas provençais (tomilho, alecrim, orégano)",
+                    "Suco de 1 limão siciliano",
+                    "3 dentes de alho esmagados",
+                    "Azeite de oliva, sal e pimenta"
+                ],
+                steps: [
+                    "Tempere os filés de frango com limão, alho, sal, pimenta e as ervas provençais.",
+                    "Deixe marinar por 15 minutos.",
+                    "Aqueça uma frigideira com azeite e doure os filés por 6 minutos de cada lado.",
+                    "Sirva quente acompanhado de legumes salteados."
+                ]
+            },
+            {
+                id: 6,
+                title: "Macarrão ao Molho Cremoso de Tomate Confit",
+                category: "prato-principal",
+                time: "25 min",
+                servings: "3 porções",
+                difficulty: "Fácil",
+                image: "https://images.unsplash.com/photo-1621996346565-e3d5d6284695?auto=format&fit=crop&w=800&q=80",
+                ingredients: [
+                    "300g de macarrão penne ou espaguete",
+                    "2 xícaras de tomates cereja assados",
+                    "1 caixa de creme de leite ou requeijão cremoso",
+                    "Queijo parmesão ralado",
+                    "Manjericão fresco e azeite"
+                ],
+                steps: [
+                    "Cozinhe o macarrão em água fervente com sal até ficar al dente.",
+                    "Em uma frigideira grande, aqueça os tomates confitados com seu azeite.",
+                    "Adicione o creme de leite e misture para formar um molho aveludado.",
+                    "Incorpore a massa cozida ao molho, polvilhe parmesão e manjericão fresco."
+                ]
+            },
+            {
+                id: 7,
+                title: "Tartalete de Morango Silvestre",
+                category: "sobremesa",
+                time: "50 min",
+                servings: "6 porções",
+                difficulty: "Média",
+                image: "https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=80",
+                ingredients: [
+                    "1 massa para torta doce assada",
+                    "1 xícara de creme pâtissier (creme de confeiteiro)",
+                    "200g de morangos frescos cortados",
+                    "Geleia de damasco para brilho"
+                ],
+                steps: [
+                    "Preencha a massa de tartalete assada com o creme de confeiteiro.",
+                    "Disponha os morangos frescos artisticamente por cima.",
+                    "Pincele levemente com geleia de damasco derretida para dar brilho.",
+                    "Leve à geladeira por 30 minutos antes de servir."
+                ]
+            },
+            {
+                id: 8,
+                title: "Mousse de Limão Siciliano",
+                category: "sobremesa",
+                time: "15 min",
+                servings: "4 porções",
+                difficulty: "Fácil",
+                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80",
+                ingredients: [
+                    "1 lata de leite condensado",
+                    "1 caixa de creme de leite",
+                    "Suco de 3 limões sicilianos espremidos",
+                    "Raspas de limão para decorar"
+                ],
+                steps: [
+                    "No liquidificador, bata o leite condensado, o creme de leite e o suco de limão por 3 minutos.",
+                    "Despeje em taças individuais.",
+                    "Leve à geladeira por pelo menos 2 horas até firmar.",
+                    "Decore com raspas de limão siciliano antes de servir."
+                ]
+            },
+            {
+                id: 9,
+                title: "Petit Gâteau Artesanal",
+                category: "sobremesa",
+                time: "30 min",
+                servings: "4 porções",
+                difficulty: "Média",
+                image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80",
+                ingredients: [
+                    "200g de chocolate meio amargo",
+                    "100g de manteiga",
+                    "2 ovos inteiros e 2 gemas",
+                    "1/4 xícara de açúcar",
+                    "2 colheres de sopa de farinha de trigo"
+                ],
+                steps: [
+                    "Derreta o chocolate com a manteiga em banho-maria.",
+                    "Em uma tigela, bata os ovos, as gemas e o açúcar até esbranquiçar.",
+                    "Misture o chocolate derretido e adicione a farinha delicadamente.",
+                    "Despeje em forminhas untadas e enfarinhadas.",
+                    "Asse em forno preaquecido a 200°C por exatos 8 minutos."
+                ]
+            }
+        ];
+
+        let currentCategory = 'todos';
+
+        // Renderiza as receitas na tela
+        function renderRecipes(filteredList = null) {
+            const grid = document.getElementById('recipeGrid');
+            const emptyState = document.getElementById('emptyState');
+            const listToRender = filteredList || recipes;
+
+            grid.innerHTML = '';
+
+            if (listToRender.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            listToRender.forEach(recipe => {
+                const card = document.createElement('div');
+                card.className = "cozy-card rounded-3xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-provencal-sand";
+                
+                card.innerHTML = `
+                    <div class="relative h-48 overflow-hidden bg-provencal-sand">
+                        <img src="${recipe.image}" alt="${recipe.title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" onerror="this.src='https://placehold.co/600x400/F3E9B7/7A5C46?text=Cozinhe+Voce+Mesmo'">
+                        <span class="absolute top-3 left-3 bg-[#FFFDF9]/90 backdrop-blur-xs text-provencal-wood text-[10px] font-semibold px-3 py-1 rounded-full uppercase tracking-wider border border-provencal-sand">
+                            ${recipe.category === 'entrada' ? '🥗 Entrada' : recipe.category === 'prato-principal' ? '🍲 Prato Principal' : '🍰 Sobremesa'}
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs text-provencal-wood/70 mb-2">
+                                <span><i class="fa-regular fa-clock mr-1 text-provencal-bluedark"></i> ${recipe.time}</span>
+                                <span><i class="fa-solid fa-signal mr-1 text-provencal-pinkdark"></i> ${recipe.difficulty}</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-provencal-wood mb-2 leading-snug">${recipe.title}</h4>
+                            <p class="text-xs text-provencal-wood/80 line-clamp-2 font-light">Rendimento: ${recipe.servings}. Toque provençal autêntico para sua mesa.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-provencal-sand/60 flex items-center justify-between">
+                            <span class="text-[11px] text-provencal-wood/60"><i class="fa-solid fa-heart text-provencal-pinkdark mr-1"></i> Caseiro</span>
+                            <button onclick="openRecipeModal(${recipe.id})" class="bg-butter hover:bg-butter-dark text-provencal-wood font-medium px-4 py-2 rounded-full text-xs transition-all cursor-pointer shadow-xs">
+                                Ver Receita
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filtra por categoria através dos botões
+        function setCategory(category) {
+            currentCategory = category;
+            
+            // Atualiza classes dos botões
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('bg-provencal-wood', 'text-white');
+                btn.classList.add('bg-[#FFFDF9]', 'text-provencal-wood', 'hover:bg-butter');
+            });
+
+            const activeBtn = document.getElementById(`btn-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-[#FFFDF9]', 'text-provencal-wood', 'hover:bg-butter');
+                activeBtn.classList.add('bg-provencal-wood', 'text-white');
+            }
+
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            applyFilterAndSearch(category, searchVal);
+        }
+
+        // Filtra por termo de busca e categoria
+        function filterRecipes() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            applyFilterAndSearch(currentCategory, searchVal);
+        }
+
+        function applyFilterAndSearch(cat, query) {
+            let filtered = recipes;
+
+            if (cat !== 'todos') {
+                filtered = filtered.filter(r => r.category === cat);
+            }
+
+            if (query.trim() !== '') {
+                filtered = filtered.filter(r => 
+                    r.title.toLowerCase().includes(query) || 
+                    r.ingredients.some(ing => ing.toLowerCase().includes(query)) ||
+                    r.category.toLowerCase().includes(query)
+                );
+            }
+
+            renderRecipes(filtered);
+        }
+
+        // Abre modal com detalhes da receita
+        function openRecipeModal(id) {
+            const recipe = recipes.find(r => r.id === id);
+            if (!recipe) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="relative h-64 sm:h-72 w-full">
+                    <img src="${recipe.image}" alt="${recipe.title}" class="w-full h-full object-cover rounded-t-3xl" onerror="this.src='https://placehold.co/600x400/F3E9B7/7A5C46?text=Cozinhe+Voce+Mesmo'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-t-3xl flex items-end p-6">
+                        <div>
+                            <span class="bg-provencal-pinklight text-provencal-pinkdark text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block">
+                                ${recipe.category === 'entrada' ? 'Entrada' : recipe.category === 'prato-principal' ? 'Prato Principal' : 'Sobremesa'}
+                            </span>
+                            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">${recipe.title}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-8 space-y-6">
+                    <div class="flex flex-wrap gap-4 text-xs font-medium text-provencal-wood bg-butter/40 p-4 rounded-2xl border border-butter-dark/50 justify-around text-center">
+                        <div><i class="fa-regular fa-clock text-provencal-bluedark block text-base mb-1"></i> Tempo: <strong>${recipe.time}</strong></div>
+                        <div><i class="fa-solid fa-utensils text-provencal-pinkdark block text-base mb-1"></i> Rendimento: <strong>${recipe.servings}</strong></div>
+                        <div><i class="fa-solid fa-signal text-provencal-wood block text-base mb-1"></i> Dificuldade: <strong>${recipe.difficulty}</strong></div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-serif text-xl font-bold text-provencal-wood mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-basket-shopping text-provencal-bluedark text-sm"></i> Ingredientes
+                        </h4>
+                        <ul class="space-y-2 text-xs sm:text-sm text-provencal-wood/90 bg-provencal-bluelight/20 p-4 rounded-2xl border border-provencal-sand">
+                            ${recipe.ingredients.map(ing => `<li class="flex items-center gap-2"><i class="fa-solid fa-check text-provencal-bluedark text-[10px]"></i> ${ing}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-serif text-xl font-bold text-provencal-wood mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-hat-chef text-provencal-pinkdark text-sm"></i> Modo de Preparo
+                        </h4>
+                        <ol class="space-y-3 text-xs sm:text-sm text-provencal-wood/90">
+                            ${recipe.steps.map((step, idx) => `
+                                <li class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-provencal-sand">
+                                    <span class="w-6 h-6 rounded-full bg-butter flex-shrink-0 flex items-center justify-center text-provencal-wood text-xs font-bold">${idx + 1}</span>
+                                    <span class="mt-0.5">${step}</span>
+                                </li>
+                            `).join('')}
+                        </ol>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('recipeModal').classList.remove('hidden');
+        }
+
+        // Abre modal para adicionar receita
+        function openAddModal() {
+            document.getElementById('addModal').classList.remove('hidden');
+        }
+
+        // Fecha modais
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        // Manipula adição de nova receita pelo usuário
+        function handleAddRecipe(event) {
+            event.preventDefault();
+
+            const title = document.getElementById('recipeTitle').value;
+            const category = document.getElementById('recipeCategory').value;
+            const difficulty = document.getElementById('recipeDifficulty').value;
+            const time = document.getElementById('recipeTime').value;
+            const servings = document.getElementById('recipeServings').value;
+            let image = document.getElementById('recipeImage').value.trim();
+            const ingredientsRaw = document.getElementById('recipeIngredients').value;
+            const stepsRaw = document.getElementById('recipeSteps').value;
+
+            if (!image) {
+                image = "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=80";
+            }
+
+            const ingredients = ingredientsRaw.split('\n').filter(i => i.trim() !== '');
+            const steps = stepsRaw.split('\n').filter(s => s.trim() !== '');
+
+            const newRecipe = {
+                id: recipes.length + 1,
+                title,
+                category,
+                difficulty,
+                time,
+                servings,
+                image,
+                ingredients,
+                steps
+            };
+
+            recipes.unshift(newRecipe);
+            renderRecipes();
+
+            const toast = document.getElementById('modalToast');
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                document.getElementById('addRecipeForm').reset();
+                closeModal('addModal');
+            }, 1500);
+        }
+
+        // Inicialização na carga da janela
+        window.onload = function() {
+            renderRecipes();
+        };
+    </script>
+</body>
+</html>
